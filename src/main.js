@@ -80,9 +80,10 @@ function register() {
         }) {
             localStorage.setItem('token', data.token);
             window.location.href = '/';
+            getTasks();
             displaySuccessToast('You Are Succesfully Registered And Logged In.');
         }).catch((err) => displayErrorToast('An account using same email or username is already created'))
-        getTasks();
+        
     }
 }
 
@@ -105,8 +106,9 @@ function login() {
         localStorage.setItem('token', data.token);
         window.location.href = '/';
         displaySuccessToast('You are Logged In.');
+        getTasks();
     }).catch((err) => displayErrorToast('Invalid Credentials'))
-    getTasks();
+   
 }
 
 
@@ -126,9 +128,9 @@ function addTask() {
         data,
         status
     }) {
+        getTasks();
         displaySuccessToast("New Task Added");
         inserttask.value = '';
-        getTasks();
     }).catch((err) => displayErrorToast('Todo Item Cannot Be Added'))
 }
 
@@ -167,8 +169,8 @@ function deleteTask(id) {
             data,
             status
         }) {
-            displaySuccessToast("Task Deleted");
             getTasks();
+            displaySuccessToast("Task Deleted");
         }).catch((err) => displayErrorToast('Error In Deletion ! !'))
     })
 
@@ -206,8 +208,8 @@ function updateTask(id) {
                 data,
                 status
             }) {
-                displaySuccessToast("Task Updated");
                 getTasks();
+                displaySuccessToast("Task Updated");
             }).catch((err) => displayErrorToast('Error In Updating ! !'))
         })
     } else displayErrorToast('Task Name Cannot Be Empty');
@@ -218,9 +220,6 @@ function updateTask(id) {
     document.getElementById('done-button-' + String(id)).classList.add('hideme');
 
 }
-
-
-
 
 export default function getTasks() {
     const list = document.getElementById('list');
