@@ -81,9 +81,7 @@ function register() {
             localStorage.setItem('token', data.token);
             window.location.href = '/';
             displaySuccessToast('You Are Succesfully Registered And Logged In.');
-        }).catch(function (err) {
-            displayErrorToast('An account using same email or username is already created');
-        })
+        }).catch((err) => displayErrorToast('An account using same email or username is already created'))
         getTasks();
     }
 }
@@ -107,10 +105,8 @@ function login() {
         localStorage.setItem('token', data.token);
         window.location.href = '/';
         displaySuccessToast('You are Logged In.');
-        getTasks();
-    }).catch(function (err) {
-        displayErrorToast('Invalid Credentials !');
-    })
+    }).catch((err) => displayErrorToast('Invalid Credentials'))
+    getTasks();
 }
 
 
